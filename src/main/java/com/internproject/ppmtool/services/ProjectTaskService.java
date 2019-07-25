@@ -36,4 +36,8 @@ public class ProjectTaskService {
         return ProjectTaskRepository.save(projectTask);
     }
 
+    public Iterable<ProjectTask> findBacklogById(String id){
+        return ProjectTaskRepository.findByProjectIdentifierOrderByPriority(id);
+    }
+
 }
