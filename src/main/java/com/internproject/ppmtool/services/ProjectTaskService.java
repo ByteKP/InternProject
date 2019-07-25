@@ -1,5 +1,7 @@
 package com.internproject.ppmtool.services;
 
+import java.util.List;
+
 import com.internproject.ppmtool.domain.Backlog;
 import com.internproject.ppmtool.domain.Project;
 import com.internproject.ppmtool.domain.ProjectTask;
@@ -9,10 +11,7 @@ import com.internproject.ppmtool.repositories.ProjectRepository;
 import com.internproject.ppmtool.repositories.ProjectTaskRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class ProjectTaskService {
@@ -92,10 +91,19 @@ public class ProjectTaskService {
     }
 
     public ProjectTask updateByProjectSequence(ProjectTask updatedTask, String backlog_id, String pt_id) {
-        ProjectTask projectTask = projectTaskRepository.findByProjectSequence(pt_id);
+        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
 
         projectTask = updatedTask;
         return projectTaskRepository.save(projectTask);
     }
 
+    public void deletePTByProjectSequence(String backlog_id, String pt_id) {
+        ProjectTask projectTask = findPTByProjectSequence(backlog_id, pt_id);
+
+        Backlog backlog = projectTask.getBacklog();
+        List<ProjectTask> pts = projectTask.getBacklog().getProjectTasks();
+        pts.remove(projectTask);
+        backlogRepository.save(backlog);
+        projectTaskRepository.delete(projectTask);
+    }
 }
