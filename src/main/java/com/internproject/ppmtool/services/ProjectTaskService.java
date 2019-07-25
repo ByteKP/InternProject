@@ -9,7 +9,10 @@ import com.internproject.ppmtool.repositories.ProjectRepository;
 import com.internproject.ppmtool.repositories.ProjectTaskRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Service
 public class ProjectTaskService {
@@ -69,4 +72,9 @@ public class ProjectTaskService {
 
         return projectTaskRepository.findByProjectIdentifierOrderByPriority(id);
     }
+
+    public ProjectTask findPTByProjectSequence(String backlog_id, String pt_id) {
+        return projectTaskRepository.findByProjectSequence(pt_id);
+    }
+
 }
