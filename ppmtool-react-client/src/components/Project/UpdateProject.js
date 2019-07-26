@@ -17,6 +17,8 @@ class UpdateProject extends Component {
       end_date: "",
       errors: {}
     };
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -40,8 +42,6 @@ class UpdateProject extends Component {
       start_date,
       end_date
     });
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
