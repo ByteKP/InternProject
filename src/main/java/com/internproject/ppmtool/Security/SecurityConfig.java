@@ -21,8 +21,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().headers()
                 .frameOptions().sameOrigin() // To enable H2 Database
-                .and().authorizeRequests().antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg",
-                        "/**/*.jpg", "/**/*.html", "/**/*.css", "/**/*.js")
-                .permitAll().anyRequest().authenticated();
+                .and().authorizeRequests()
+                .antMatchers("/", "/favicon.ico", "/**/*.png", "/**/*.gif", "/**/*.svg", "/**/*.jpg", "/**/*.html",
+                        "/**/*.css", "/**/*.js")
+                .permitAll().antMatchers("/api/users/**").permitAll().anyRequest().authenticated();
     }
 }
