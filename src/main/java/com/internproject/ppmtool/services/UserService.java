@@ -1,6 +1,7 @@
 package com.internproject.ppmtool.services;
 
 import com.internproject.ppmtool.domain.User;
+import com.internproject.ppmtool.exceptions.UsernameAlreadyExistsException;
 import com.internproject.ppmtool.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,13 @@ public class UserService {
     private BCryptPasswordEncoder BCryptPasswordEncoder;
 
     public User saveUser(User newUser) {
-        newUser.setPassword(BCryptPasswordEncoder.encode(newUser.getPassword()));
-        return userRepository.save(newUser);
+        try {
+            newUser.setPassword(BCryptPasswordEncoder.encode(newUser.getPassword()));
+
+            newUser.setUsername(newUser.getUsername());
+            return userRepository.save(newUser);
+        } catch (Exception e) {
+            throw new UsernameAlreadyExistsException("Username:  " + newUser.getUsername() + " already exists");
+        }
     }
 }
