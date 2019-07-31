@@ -2,7 +2,6 @@ package com.internproject.ppmtool.validator;
 
 import com.internproject.ppmtool.domain.User;
 
-import org.hibernate.validator.internal.metadata.facets.Validatable;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -1,7 +1,5 @@
 package com.internproject.ppmtool.services;
 
-import java.util.List;
-
 import com.internproject.ppmtool.domain.Backlog;
 import com.internproject.ppmtool.domain.Project;
 import com.internproject.ppmtool.domain.ProjectTask;

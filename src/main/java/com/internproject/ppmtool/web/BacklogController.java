@@ -1,7 +1,5 @@
 package com.internproject.ppmtool.web;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import com.internproject.ppmtool.domain.ProjectTask;
